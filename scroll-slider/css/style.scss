@@ -1,0 +1,58 @@
+$imgWidth : 600px;
+$imgHeight: 400px;
+$imgNums : 6;
+$dotWidth: 15px;
+$dotHeight: 15px;
+$color-dark: "#6b547c9c";
+$color-light: "#dcadff9c";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+.wrapper {
+  margin: 20px auto;
+  width: $imgWidth;
+  height: $imgHeight;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  box-shadow: 2px 2px 15px #3260e0, -2px -2px 15px #3260e0;
+}
+.wrapper .dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 200px;
+  height: 40px;
+  z-index : 2;
+  text-align: center;
+}
+.dots span {
+  margin-right: 5px;
+  display: inline-block;
+  background: #6b547c9c;
+  width: $dotWidth;
+  height: $dotHeight;
+  border-radius: 50%;
+}
+.slider {
+  position: absolute;
+  width: $imgWidth * ($imgNums + 2);
+  height: $imgHeight;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: all 0.6s;
+}
+.wrapper li {
+  list-style-type: none;
+  display: inline-block;
+  float:left;
+}
+.wrapper img {
+  width: $imgWidth;
+  height: $imgHeight;
+}
