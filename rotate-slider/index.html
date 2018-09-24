@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rotate slider</title>
+    <style>
+        section {
+            margin: 3em auto;
+            max-width: 800px;
+            height:300px;
+            /*mark*/
+            perspective: 500px;
+        }
+        figure {
+            position: relative;
+            margin: 0 auto;
+            width: 35%;
+            height: 250px;
+            /*mark*/
+            transform-style: preserve-3d;
+            transition: all 1.2s;
+            box-sizing: border-box;
+        }
+        figure img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*mark*/
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <figure>
+            <img src="img/6.jpg" />
+            <img src="img/7.jpg" />
+            <img src="img/8.jpg" />
+        </figure>
+    </section>
+    <section>
+        <figure>
+            <img src="img/1.jpg" />
+            <img src="img/2.jpg" />
+            <img src="img/7.jpg" />
+            <img src="img/8.jpg" />
+        </figure>
+    </section>
+    <section>
+        <figure>
+            <img src="img/1.jpg" />
+            <img src="img/2.jpg" />
+            <img src="img/3.jpg" />
+            <img src="img/4.jpg" />
+            <img src="img/5.jpg" />
+            <img src="img/6.jpg" />
+        </figure>
+    </section>
+    <section>
+        <figure>
+            <img src="img/1.jpg" />
+            <img src="img/2.jpg" />
+            <img src="img/3.jpg" />
+            <img src="img/4.jpg" />
+            <img src="img/5.jpg" />
+            <img src="img/7.jpg" />
+            <img src="img/8.jpg" />
+        </figure>
+    </section>
+    <section>
+        <figure>
+            <img src="img/1.jpg" />
+            <img src="img/2.jpg" />
+            <img src="img/3.jpg" />
+            <img src="img/4.jpg" />
+            <img src="img/5.jpg" />
+            <img src="img/6.jpg" />
+            <img src="img/7.jpg" />
+            <img src="img/8.jpg" />
+        </figure>
+    </section>
+    <script>
+        let figure = document.querySelectorAll("figure")
+        for(let i = 0;i < figure.length;i++) {
+            let imgArr = figure[i].children
+            let width = figure[i].clientWidth
+            let apothem = getParam(width, imgArr.length).apothem
+            let angle = getParam(width, imgArr.length).angle
+            figure[i].style.transformOrigin = `50% 50% -${apothem}px`
+            for(let j = 0;j < imgArr.length; j++) {
+                imgArr[j].style.transform = `rotateY(${angle * j}deg)`
+                imgArr[j].style.transformOrigin = `50% 50% -${apothem}px`
+            }
+            autoPlay(figure[i], angle, figure.length)
+        }
+        function getParam(width, len) {
+            // 边心距
+            let apothem = width / (2 * Math.tan(Math.PI / len))
+            let angle = 360 / len
+            return {
+                apothem: apothem,
+                angle: angle
+            }
+        }
+        function autoPlay(el, angle, len) {
+            let count = 1
+            setInterval(()=> {
+                el.style.transform = `rotateY(${angle * count}deg)`
+                count ++
+                }, 1200)
+        }
+    </script>
+</body>
+</html>
